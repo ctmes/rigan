@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@/layouts/Base.astro";
+import Hero from "@/components/Hero";
+import Principles from "@/components/Principles";
+import SelectedWork from "@/components/SelectedWork";
+import CTA from "@/components/CTA";
+---
+
+<BaseLayout title="Rigan">
+  <Hero
+    client:load
+    heading="Bespoke software for founders and engineering teams"
+    subheading="We design and build lean, resilient systems — not templates. Architecture-first, delivery-focused, no fluff."
+    cta={{ label: "Start a project", href: "/contact" }}
+    secondary={{ label: "See our work", href: "/case-studies" }}
+  />
+
+  <Principles />
+
+  <SelectedWork />
+
+  <CTA
+    client:visible
+    heading="Have a project in mind?"
+    body="Tell us what you're building. We'll tell you how we'd approach it."
+    label="Get in touch"
+    href="/contact"
+  />
+</BaseLayout>

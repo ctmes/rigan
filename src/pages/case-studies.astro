@@ -1,0 +1,61 @@
+---
+import BaseLayout from "@/layouts/Base.astro";
+import PageHeader from "@/components/PageHeader";
+import ProjectCard from "@/components/ProjectCard";
+import CTA from "@/components/CTA";
+
+const projects = [
+  {
+    client: "Fintech startup",
+    industry: "Payments / FinTech",
+    engagement: "Platform strategy + delivery",
+    summary:
+      "Designed and built a real-time transaction processing pipeline handling 50k+ events/day, replacing a brittle spreadsheet-based workflow.",
+    stack: ["TypeScript", "Node.js", "PostgreSQL", "Redis", "AWS"],
+    outcome: "Reduced settlement reconciliation time from 4 hours to under 5 minutes.",
+  },
+  {
+    client: "Investment manager",
+    industry: "Quant / Asset Management",
+    engagement: "Data infrastructure + tooling",
+    summary:
+      "Built a backtesting and portfolio analytics platform from scratch, integrating multiple market data vendors and internal factor models.",
+    stack: ["Python", "FastAPI", "DuckDB", "React", "Fly.io"],
+    outcome: "Team went from manual Excel models to reproducible, version-controlled research workflows.",
+  },
+  {
+    client: "B2B SaaS",
+    industry: "Workflow automation",
+    engagement: "Refactor & rescue",
+    summary:
+      "Inherited a monolith with no tests and a 2-week deploy cycle. Decomposed critical paths, added observability, and cut deploys to on-demand.",
+    stack: ["Ruby on Rails", "React", "Sidekiq", "Datadog"],
+    outcome: "Deploy frequency increased 10×. Team confidence in shipping restored.",
+  },
+];
+---
+
+<BaseLayout title="Work" description="Selected Rigan client engagements and case studies.">
+  <div class="max-w-5xl mx-auto px-6 py-20">
+    <PageHeader
+      client:load
+      label="Selected work"
+      heading="Projects we're proud of"
+      body="A sample of recent engagements. Client names are anonymised by default — we're happy to discuss specifics in a call."
+    />
+
+    <div class="mt-20 grid gap-8">
+      {projects.map((p) => (
+        <ProjectCard client:visible {...p} />
+      ))}
+    </div>
+  </div>
+
+  <CTA
+    client:visible
+    heading="Want to see more?"
+    body="We share more detail in conversation. Book a no-pressure intro call."
+    label="Get in touch"
+    href="/contact"
+  />
+</BaseLayout>

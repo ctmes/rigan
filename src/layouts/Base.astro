@@ -1,0 +1,86 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Rigan – bespoke software consulting & development studio.",
+} = Astro.props;
+
+const nav = [
+  { label: "About",    href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Work",     href: "/case-studies" },
+];
+
+const current = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Rigan</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-rule">
+      <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+
+        <a href="/" class="flex items-center group">
+          <span class="font-mono text-sm font-medium tracking-tight text-ink">Rigan</span>
+        </a>
+
+        <nav class="flex items-center gap-8">
+          {nav.map(({ label, href }) => (
+            <a
+              href={href}
+              class:list={[
+                "text-sm transition-colors",
+                current.startsWith(href) ? "text-ink font-medium" : "text-dim hover:text-ink",
+              ]}
+            >
+              {label}
+            </a>
+          ))}
+          <a
+            href="/contact"
+            class="text-sm px-4 py-1.5 rounded-full bg-ink text-white hover:bg-ink/80 transition-colors font-medium"
+          >
+            Start a project
+          </a>
+        </nav>
+
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="border-t border-rule mt-24">
+      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <span class="font-mono text-xs text-dim">© {new Date().getFullYear()} Rigan Software Studio · Perth, WA</span>
+        <nav class="flex items-center gap-6">
+          <a href="/about" class="text-xs text-dim hover:text-ink transition-colors">About</a>
+          <a href="/services" class="text-xs text-dim hover:text-ink transition-colors">Services</a>
+          <a href="/case-studies" class="text-xs text-dim hover:text-ink transition-colors">Work</a>
+          <a href="/contact" class="text-xs text-dim hover:text-ink transition-colors">Contact</a>
+        </nav>
+      </div>
+    </footer>
+
+  </body>
+</html>

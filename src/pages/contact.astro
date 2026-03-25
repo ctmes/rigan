@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@/layouts/Base.astro";
+import PageHeader from "@/components/PageHeader";
+import ContactForm from "@/components/ContactForm";
+---
+
+<BaseLayout title="Contact" description="Start a project with Rigan Software Studio.">
+  <div class="max-w-3xl mx-auto px-6 py-20">
+    <PageHeader
+      client:load
+      label="Get in touch"
+      heading="Start a project"
+      body="Tell us what you're working on. We respond to every serious enquiry within one business day."
+    />
+
+    <div class="mt-16 grid md:grid-cols-5 gap-16">
+      <div class="md:col-span-3">
+        <ContactForm client:load />
+      </div>
+
+      <aside class="md:col-span-2 space-y-8 text-sm text-dim">
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">Location</p>
+          <p class="text-ink">Perth, Western Australia<br />Available remotely worldwide</p>
+        </div>
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">Typical engagement</p>
+          <p class="text-ink">Project-based or ongoing retainer.<br />Minimum 4-week engagements.</p>
+        </div>
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">Current availability</p>
+          <p class="text-ink flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" aria-hidden="true"></span>
+            Accepting new projects
+          </p>
+        </div>
+        <div>
+          <p class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">Direct email</p>
+          <a href="mailto:hello@rigan.io" class="text-ink hover:text-dim transition-colors">
+            hello@rigan.io
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

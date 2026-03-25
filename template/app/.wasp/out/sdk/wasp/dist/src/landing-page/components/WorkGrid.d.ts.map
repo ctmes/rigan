@@ -1,1 +1,0 @@
-{"version":3,"file":"WorkGrid.d.ts","sourceRoot":"","sources":["../../../../src/landing-page/components/WorkGrid.tsx"],"names":[],"mappings":"AAIA,UAAU,SAAS;IACjB,IAAI,EAAE,MAAM,CAAC;IACb,WAAW,EAAE,MAAM,CAAC;IACpB,IAAI,EAAE,MAAM,CAAC;CACd;AAED,MAAM,CAAC,OAAO,UAAU,QAAQ,CAAC,EAAE,WAAW,EAAE,EAAE;IAAE,WAAW,EAAE,SAAS,EAAE,CAAA;CAAE,+BAsC7E"}

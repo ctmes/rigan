@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@/layouts/Base.astro";
+import PageHeader from "@/components/PageHeader";
+import PlaybookSection from "@/components/PlaybookSection";
+import CTA from "@/components/CTA";
+
+const sections = [
+  {
+    number: "01",
+    title: "Product & Platform Strategy",
+    body: "We work with founders and technical leads to clarify what to build and why — before a line of code is written.",
+    bullets: [
+      "Systems design and architecture review",
+      "Technology stack selection and rationale",
+      "Roadmap scoping and prioritisation",
+      "Technical discovery workshops",
+    ],
+  },
+  {
+    number: "02",
+    title: "Execution & Delivery",
+    body: "High-velocity builds without the chaos. We embed as your engineering partner and ship working software.",
+    bullets: [
+      "Full-stack feature development",
+      "APIs, integrations, and data pipelines",
+      "CI/CD, infrastructure, and observability",
+      "Regular demos — no black-box delivery",
+    ],
+  },
+  {
+    number: "03",
+    title: "Refactor & Rescue",
+    body: "Inherited a codebase that's slowing you down? We audit, modernise, and hand you back the keys.",
+    bullets: [
+      "Legacy code modernisation",
+      "Performance and reliability audits",
+      "Test coverage and documentation uplift",
+      "Knowledge transfer and team on-boarding",
+    ],
+  },
+  {
+    number: "04",
+    title: "Quantitative & Data Systems",
+    body: "Specialised experience in data-intensive and analytical systems, from ingestion to insight.",
+    bullets: [
+      "Event-driven data pipelines",
+      "Quantitative modelling and backtesting infrastructure",
+      "Real-time dashboards and reporting",
+      "Cloud data warehouse design",
+    ],
+  },
+];
+---
+
+<BaseLayout title="Services" description="Rigan's consulting playbook — how we work with founders and engineering leads.">
+  <div class="max-w-5xl mx-auto px-6 py-20">
+    <PageHeader
+      client:load
+      label="The Playbook"
+      heading="How we work"
+      body="Four areas where Rigan adds the most value. We take on selective engagements — our best work happens when there's a clear problem and a team that cares about quality."
+    />
+
+    <div class="mt-20 divide-y divide-rule">
+      {sections.map((s) => (
+        <PlaybookSection client:visible {...s} />
+      ))}
+    </div>
+  </div>
+
+  <CTA
+    client:visible
+    heading="Ready to get started?"
+    body="We typically have capacity for 2–3 active engagements. Reach out early."
+    label="Start a conversation"
+    href="/contact"
+  />
+</BaseLayout>
