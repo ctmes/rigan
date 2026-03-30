@@ -48,7 +48,8 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending" || status === "sent"}
-        className="px-5 py-2.5 rounded-full bg-ink text-white text-sm font-medium hover:bg-ink/80 transition-colors disabled:opacity-40"
+        className="px-5 py-2.5 rounded-full text-white text-sm font-medium transition-opacity hover:opacity-80 disabled:opacity-40"
+        style={{ backgroundImage: 'linear-gradient(135deg, #191970, #2c3580)' }}
       >
         {status === "sending" ? "Sending…" : status === "sent" ? "Message sent" : "Send message"}
       </button>

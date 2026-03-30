@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -27,6 +28,7 @@ const current = Astro.url.pathname;
     <title>{title} | Rigan</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ViewTransitions />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,7 +60,8 @@ const current = Astro.url.pathname;
           ))}
           <a
             href="/contact"
-            class="text-sm px-4 py-1.5 rounded-full bg-ink text-white hover:bg-ink/80 transition-colors font-medium"
+            class="text-sm px-4 py-1.5 rounded-full text-white font-medium transition-opacity hover:opacity-80"
+            style="background: linear-gradient(135deg, #191970, #2c3580)"
           >
             Start a project
           </a>

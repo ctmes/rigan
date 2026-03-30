@@ -170,10 +170,18 @@ export default function Hero({ heading, subheading, cta, secondary }: HeroProps)
           <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-dim">
             Rigan Software Studio
           </span>
-          <span className="flex-1 h-px bg-rule" />
+          <span className="flex-1 h-px" style={{ backgroundImage: 'linear-gradient(to right, #191970, transparent)' }} />
         </div>
 
-        <h1 className="hero-fade-2 text-display font-semibold text-ink max-w-4xl mb-8">
+        <h1
+          className="hero-fade-2 text-display font-semibold max-w-4xl mb-8"
+          style={{
+            backgroundImage: 'linear-gradient(100deg, #0a0a0a 0%, #191970 50%, #2c3580 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
           {heading}
         </h1>
 
@@ -185,7 +193,8 @@ export default function Hero({ heading, subheading, cta, secondary }: HeroProps)
           <div className="flex items-center gap-5 shrink-0">
             <a
               href={cta.href}
-              className="px-5 py-2.5 rounded-full bg-ink text-white text-sm font-medium hover:bg-ink/80 transition-colors"
+              className="px-5 py-2.5 rounded-full text-white text-sm font-medium transition-opacity hover:opacity-80"
+              style={{ backgroundImage: 'linear-gradient(135deg, #191970, #2c3580)' }}
             >
               {cta.label}
             </a>

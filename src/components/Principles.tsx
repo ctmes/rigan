@@ -40,7 +40,15 @@ export default function Principles() {
                 {p.n}
               </span>
               <span className="font-mono text-[10px] text-dim block mb-4 relative">{p.n}</span>
-              <h3 className="text-sm font-semibold text-ink mb-3 tracking-tight relative">{p.label}</h3>
+              <h3
+                className="text-sm font-semibold mb-3 tracking-tight relative"
+                style={{
+                  backgroundImage: 'linear-gradient(100deg, #191970, #2c3580)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >{p.label}</h3>
               <p className="text-sm text-dim leading-relaxed relative">{p.body}</p>
             </div>
           ))}
