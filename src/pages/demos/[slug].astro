@@ -1,0 +1,81 @@
+---
+import Base from "@/layouts/Base.astro";
+import { demos, type Demo } from "@/data/demos";
+
+export function getStaticPaths() {
+  return demos.map((d) => ({
+    params: { slug: d.slug },
+    props: { demo: d },
+  }));
+}
+
+interface Props { demo: Demo }
+const { demo } = Astro.props;
+---
+
+<Base title={demo.title} description={demo.tagline}>
+
+  <!-- Header bar -->
+  <section class="border-b border-rule">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div>
+        <span class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">
+          Live demo
+        </span>
+        <h1
+          class="text-title font-semibold"
+          style={{
+            backgroundImage: "linear-gradient(100deg, #0a0a0a 0%, #191970 50%, #2c3580 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          {demo.title}
+        </h1>
+        <p class="text-dim mt-1 text-sm leading-relaxed max-w-xl">{demo.description}</p>
+        <div class="flex gap-2 mt-3 flex-wrap">
+          {demo.stack.map((s) => (
+            <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-dim bg-surface border border-rule px-2 py-1 rounded">
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 shrink-0">
+        {demo.github && (
+          <a
+            href={demo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-dim hover:text-ink transition-colors"
+          >
+            GitHub ↗
+          </a>
+        )}
+        <a
+          href={demo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-5 py-2.5 rounded-full text-white text-sm font-medium transition-opacity hover:opacity-80"
+          style="background: linear-gradient(135deg, #191970, #2c3580)"
+        >
+          Open in new tab ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Iframe -->
+  <div class="w-full" style="height: calc(100vh - 200px); min-height: 480px;">
+    <iframe
+      src={demo.url}
+      title={demo.title}
+      class="w-full h-full border-0"
+      allow="fullscreen; clipboard-write"
+      loading="lazy"
+    />
+  </div>
+
+</Base>
