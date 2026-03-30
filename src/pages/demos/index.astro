@@ -1,59 +1,67 @@
 ---
-import Base from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/Base.astro";
 import PageHeader from "@/components/PageHeader";
 import CTA from "@/components/CTA";
 import { demos } from "@/data/demos";
 ---
 
-<Base
+<BaseLayout
   title="Lab"
   description="Interactive demos of tools and applications built by Rigan Software Studio."
 >
-  <section class="max-w-6xl mx-auto px-6 pt-16 pb-24">
+  <div class="max-w-5xl mx-auto px-6 py-20">
+
     <PageHeader
+      client:load
       label="Lab"
       heading="Live demos"
       body="Interactive tools and applications you can try directly in the browser."
-      client:load
     />
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-rule mt-16 border border-rule">
-      {demos.map((d) => (
-        <a
-          href={`/demos/${d.slug}`}
-          class="bg-white p-8 group hover:bg-surface transition-colors flex flex-col"
-        >
-          <h3
-            class="text-sm font-semibold tracking-tight"
-            style={{
-              backgroundImage: "linear-gradient(100deg, #191970, #2c3580)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+    <div class="mt-20 border-t border-rule pt-16">
+      <span class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-10">
+        All demos
+      </span>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-rule border border-rule">
+        {demos.map((d) => (
+          <a
+            href={`/demos/${d.slug}`}
+            class="bg-white p-8 group hover:bg-surface transition-colors flex flex-col"
           >
-            {d.title}
-          </h3>
-          <p class="text-sm text-dim mt-2 leading-relaxed flex-1">{d.tagline}</p>
-          <div class="flex gap-2 mt-5 flex-wrap">
-            {d.stack.map((s) => (
-              <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-dim bg-surface border border-rule px-2 py-1 rounded">
-                {s}
-              </span>
-            ))}
-          </div>
-          <span class="text-sm text-dim group-hover:text-ink transition-colors mt-6 block">
-            Open demo →
-          </span>
-        </a>
-      ))}
+            <h3
+              class="text-sm font-semibold tracking-tight"
+              style={{
+                backgroundImage: "linear-gradient(100deg, #191970, #2c3580)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              {d.title}
+            </h3>
+            <p class="text-sm text-dim mt-2 leading-relaxed flex-1">{d.tagline}</p>
+            <div class="flex gap-2 mt-5 flex-wrap">
+              {d.stack.map((s) => (
+                <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-dim bg-surface border border-rule px-2 py-1 rounded">
+                  {s}
+                </span>
+              ))}
+            </div>
+            <span class="text-sm text-dim group-hover:text-ink transition-colors mt-6 block">
+              Open demo →
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
-  </section>
+
+  </div>
 
   <CTA
+    client:visible
     heading="Want to build something like this?"
     body="We design and build lean, production-grade software for teams that care about craft."
     label="Start a project"
     href="/contact"
   />
-</Base>
+</BaseLayout>

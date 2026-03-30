@@ -1,5 +1,5 @@
 ---
-import Base from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/Base.astro";
 import { demos, type Demo } from "@/data/demos";
 
 export function getStaticPaths() {
@@ -13,62 +13,69 @@ interface Props { demo: Demo }
 const { demo } = Astro.props;
 ---
 
-<Base title={demo.title} description={demo.tagline}>
+<BaseLayout title={demo.title} description={demo.tagline}>
+  <div class="max-w-5xl mx-auto px-6 py-20">
 
-  <!-- Header bar -->
-  <section class="border-b border-rule">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-      <div>
-        <span class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-2">
-          Live demo
-        </span>
-        <h1
-          class="text-title font-semibold"
-          style={{
-            backgroundImage: "linear-gradient(100deg, #0a0a0a 0%, #191970 50%, #2c3580 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          {demo.title}
-        </h1>
-        <p class="text-dim mt-1 text-sm leading-relaxed max-w-xl">{demo.description}</p>
-        <div class="flex gap-2 mt-3 flex-wrap">
-          {demo.stack.map((s) => (
-            <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-dim bg-surface border border-rule px-2 py-1 rounded">
-              {s}
-            </span>
-          ))}
+    <!-- Page header matching about layout -->
+    <div class="max-w-2xl">
+      <span class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-5">
+        Live demo
+      </span>
+      <h1
+        class="text-title font-semibold mb-4"
+        style={{
+          backgroundImage: "linear-gradient(100deg, #0a0a0a 0%, #191970 50%, #2c3580 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
+        {demo.title}
+      </h1>
+      <div class="mt-1 mb-4 h-[3px] w-12 rounded-full" style="background: linear-gradient(to right, #191970, #2c3580)" />
+      <p class="text-dim leading-relaxed">{demo.description}</p>
+    </div>
+
+    <!-- Meta row -->
+    <div class="mt-20 border-t border-rule pt-16 grid md:grid-cols-5 gap-16">
+      <div class="md:col-span-2 space-y-6">
+        <div>
+          <span class="font-mono text-[10px] uppercase tracking-[0.15em] text-dim block mb-3">Stack</span>
+          <div class="flex gap-2 flex-wrap">
+            {demo.stack.map((s) => (
+              <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-dim bg-surface border border-rule px-2 py-1 rounded">
+                {s}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div class="flex items-center gap-3 shrink-0">
-        {demo.github && (
+        <div class="flex flex-col gap-3">
+          {demo.github && (
+            <a
+              href={demo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm text-dim hover:text-ink transition-colors"
+            >
+              View on GitHub ↗
+            </a>
+          )}
           <a
-            href={demo.github}
+            href={demo.url}
             target="_blank"
             rel="noopener noreferrer"
             class="text-sm text-dim hover:text-ink transition-colors"
           >
-            GitHub ↗
+            Open in new tab ↗
           </a>
-        )}
-        <a
-          href={demo.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-5 py-2.5 rounded-full text-white text-sm font-medium transition-opacity hover:opacity-80"
-          style="background: linear-gradient(135deg, #191970, #2c3580)"
-        >
-          Open in new tab ↗
-        </a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- Iframe -->
-  <div class="w-full" style="height: calc(100vh - 200px); min-height: 480px;">
+  </div>
+
+  <!-- Full-width iframe below the contained content -->
+  <div class="border-t border-rule" style="height: calc(100vh - 80px); min-height: 520px;">
     <iframe
       src={demo.url}
       title={demo.title}
@@ -78,4 +85,4 @@ const { demo } = Astro.props;
     />
   </div>
 
-</Base>
+</BaseLayout>
